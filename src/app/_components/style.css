@@ -1,0 +1,51 @@
+.header-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.route-list {
+  padding-right: 3rem;
+}
+.image {
+  padding-left: 3rem;
+}
+ul {
+  display: flex;
+}
+
+ul li {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+  padding: 5px;
+  width: 10vw;
+}
+
+ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.btn {
+  padding: 5px 10px;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.fotter {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  color: white;
+  background-color: gainsboro;
+  padding: 0.5rem;
+}
+.fotter p {
+  text-align: center;
+}
