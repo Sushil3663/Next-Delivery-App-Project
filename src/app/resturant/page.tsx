@@ -16,8 +16,6 @@ const ResturantPage = () => {
     // console.log(storedData);
     if (storedData?.email && pathname == "/resturant") {
       router.push("/resturant/dashboard");
-    } else {
-      router.push("/resturant");
     }
   }, []);
   return (

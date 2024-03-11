@@ -18,9 +18,6 @@ const ResturantHeader = () => {
     // console.log(storedData);
     if (storedData?.email) {
       setDetail(true);
-    } else if (storedData?.email && pathname == "/resturant") {
-      router.push("/resturant/dashboard");
-      console.log(detail);
     } else {
       router.push("/resturant");
     }

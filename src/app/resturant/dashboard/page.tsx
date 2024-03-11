@@ -6,6 +6,7 @@ const page = () => {
   return (
     <div>
       <ResturantHeader />
+      <p>Dashboard</p>
     </div>
   );
 };

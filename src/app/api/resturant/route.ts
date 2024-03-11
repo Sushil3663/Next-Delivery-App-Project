@@ -6,27 +6,6 @@ import { connectionStrs } from "@/app/lib/db";
 
 mongoose.connect(connectionStrs);
 
-export async function GET(request: Request, response: Response) {
-  try {
-    let data = await request.json();
-    const { email } = data;
-    if (email) {
-      const result = await resturantModel.findOne(email);
-      console.log(result);
-      return NextResponse.json({ result: result });
-    } else {
-      return NextResponse.json({ result: "Email doesn't Exist", alert: false });
-    }
-  } catch (error) {
-    console.log(error);
-
-    return NextResponse.json(
-      { result: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
-
 export async function POST(request: Request) {
   try {
     const data = await request.json();
