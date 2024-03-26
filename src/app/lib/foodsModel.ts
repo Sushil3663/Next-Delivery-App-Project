@@ -25,5 +25,5 @@ const foodSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const resturantModel =
+export const FoodModel =
   mongoose.models.foods || mongoose.model("foods", foodSchema);

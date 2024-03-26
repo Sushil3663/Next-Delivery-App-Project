@@ -49,3 +49,7 @@ ul li a {
 .fotter p {
   text-align: center;
 }
+
+.border-table {
+  border: 1px solid black;
+}

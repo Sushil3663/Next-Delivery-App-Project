@@ -65,3 +65,36 @@ button[type="submit"] {
 .login-header {
   text-align: center;
 }
+
+.button-sep {
+  margin-left: 1rem;
+  padding: 4px 6px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+  width: 80vw;
+  margin: 1rem auto;
+}
+
+table td {
+  text-align: center;
+}
+
+table td img {
+  border-radius: 40%;
+  padding: 4px;
+}
+
+table td button {
+  padding: 2px 8px;
+  margin-right: 0.3rem;
+}
+
+.w-button {
+  width: 3.5rem;
+}
