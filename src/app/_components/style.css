@@ -42,8 +42,7 @@ ul li a {
   width: 100vw;
   position: fixed;
   bottom: 0;
-  color: white;
-  background-color: gainsboro;
+  color: black;
   padding: 0.5rem;
 }
 .fotter p {

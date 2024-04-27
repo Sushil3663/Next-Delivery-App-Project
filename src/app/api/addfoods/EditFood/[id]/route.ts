@@ -13,17 +13,17 @@ export async function GET(
   try {
     // const { productid } = params;
     // const { productid } = req.query;
-    const productid: any = content.params.productid;
-    console.log(productid);
-    if (productid === undefined) {
+    const id: any = content.params.id;
+    // console.log(id);
+    if (id === undefined) {
       return NextResponse.json({
         success: false,
         message: "Id parameter is missing in the request query.",
       });
     }
 
-    let payload = await FoodModel.find({ resto_id: productid });
-    console.log(payload);
+    let payload = await FoodModel.findOne({ _id: id });
+    // console.log(payload);
     return NextResponse.json({
       data: payload,
       success: true,
@@ -37,17 +37,17 @@ export async function GET(
   }
 }
 
-export async function DELETE(req: NextApiRequest, content: any) {
+export async function PUT(req: Request, content: any) {
   try {
-    let productid = content.params.productid;
-    console.log(productid);
-    let filter = { _id: productid };
-
-    let payload = await FoodModel.deleteOne(filter);
+    const id: any = content.params.id;
+    // console.log(id);
+    let data = await req.json();
+    // console.log(data);
+    let payload = await FoodModel.findOneAndUpdate({ _id: id }, data);
     return NextResponse.json({
       data: payload,
       success: true,
-      message: "Get Restro Food Item Deleted successfully",
+      message: "Update Restro Food Item Updated successfully",
     });
   } catch (error) {
     return NextResponse.json({

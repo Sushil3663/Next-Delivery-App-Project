@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { ApiResponse, FoodItem } from "./common";
 import "./style.css";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 interface IProps {
   initialData: FoodItem[];
 }
@@ -18,40 +19,14 @@ interface Store {
   __v: number;
 }
 const FoodItemList = ({ initialData }: IProps) => {
+  const router = useRouter();
   const [data, setData] = useState<FoodItem[]>(initialData);
   useEffect(() => {
     setData(initialData);
   }, [initialData]);
 
   const handleEdit = async (id: string) => {
-    let response = await fetch(`http://localhost:3000/api/addfoods/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-    let result: ApiResponse = await response.json();
-
-    if (result?.success) {
-      toast?.success(result?.message);
-      const restaurantUserString = localStorage.getItem("resturantUser");
-      const restaurantUser: Store = restaurantUserString
-        ? JSON.parse(restaurantUserString)
-        : null;
-      const fetchData = async () => {
-        let response = await fetch(
-          `http://localhost:3000/api/addfoods/${restaurantUser?._id}`,
-          {
-            method: "GET",
-            headers: {
-              contentType: "application/json",
-            },
-          }
-        );
-        let result: ApiResponse = await response.json();
-        setData(result?.data);
-      };
-      fetchData();
-    }
+    router.push(`/resturant/dashboard/${id}`);
   };
 
   const handleDelete = async (id: string) => {

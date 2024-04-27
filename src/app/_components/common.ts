@@ -36,3 +36,9 @@ export interface ApiResponse {
   success: boolean;
   message: string;
 }
+
+export interface EditResponse {
+  data: FoodItem;
+  success: boolean;
+  message: string;
+}
