@@ -145,3 +145,29 @@ table td button {
   background: #dfdde3;
   box-shadow: inset 15px 15px 30px #bebcc1, inset -15px -15px 30px #fffeff;
 }
+.u-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+.list {
+  list-style-type: none;
+  color: black;
+  font-size: larger;
+  background-color: #575656;
+  width: 20rem;
+  border-radius: 5px;
+  color: #dfdde3;
+  padding: 0.8rem;
+}
+
+.list p {
+  color: blue;
+  background-color: white;
+  border-radius: 5px;
+}

@@ -12,12 +12,16 @@ export async function GET(request: Request) {
     // console.log(data);
     let result = await resturantModel.find();
     result = result.map((item) => item?.city.toUpperCase());
-    console.log(result);
+    // console.log(result);
 
     let payload = result.filter(
       (item, index) => result.indexOf(item) === index
     );
-    console.log(payload);
+    // console.log(payload);
+    payload = payload.map(
+      (item) => item?.charAt(0).toUpperCase() + item?.slice(1)
+    );
+
     return NextResponse.json({
       payload,
       success: true,

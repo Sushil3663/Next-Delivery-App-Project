@@ -42,3 +42,34 @@ export interface EditResponse {
   success: boolean;
   message: string;
 }
+
+export interface LocationResponse {
+  payload: [];
+  success: boolean;
+  message: string;
+}
+
+export interface ListResponsePayload {
+  _id: string;
+  email: string;
+  password: string;
+  rname: string;
+  city: string;
+  address: string;
+  phone: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v: number;
+}
+export interface ListResponse {
+  payload: [ListResponsePayload];
+  success: boolean;
+  message: string;
+}
+
+export interface DetailResponse {
+  payload: ListResponsePayload;
+  foodItems: FoodItem[];
+  success: boolean;
+  message: string;
+}
