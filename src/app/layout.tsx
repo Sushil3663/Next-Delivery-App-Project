@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import ToastContainer from "./Toaster/toastContainer";
+import ReduxContainer from "./_redux/ReduxContainer";
 
 const roboto = Roboto({
   weight: ["100", "300", "400"],

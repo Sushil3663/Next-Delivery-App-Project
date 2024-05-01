@@ -81,7 +81,11 @@ const FoodItemList = ({ initialData }: IProps) => {
             <td>{item.price}</td>
             <td>{item.desc}</td>
             <td>
-              <img src={item.path} alt={item.foodname} style={{ width: 100 }} />
+              <img
+                src={item.path}
+                alt={item.foodname}
+                style={{ width: 60, height: 60, borderRadius: "50%" }}
+              />
             </td>
             <td>
               <button type="button" onClick={() => handleDelete(item?._id)}>

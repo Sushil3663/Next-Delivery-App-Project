@@ -9,14 +9,8 @@ mongoose.connect(connectionStrs);
 export async function GET(request: NextRequest) {
   try {
     let queryParams = request.nextUrl.searchParams;
-    // let filter = {};
+    console.log(queryParams.get("location"));
 
-    // let payload = await resturantModel.find(filter);
-    // return NextResponse.json({
-    //   payload,
-    //   success: true,
-    //   message: "Successfully",
-    // });
     if (queryParams.get("resturant") && queryParams.get("location")) {
       let resturant = queryParams.get("resturant");
       let location = queryParams.get("location");
@@ -38,7 +32,7 @@ export async function GET(request: NextRequest) {
         });
       }
     } else if (queryParams.get("resturant")) {
-      // console.log(queryParams.get("resturant"));
+      console.log(queryParams.get("resturant"));
 
       let resturant = queryParams.get("resturant");
       if (resturant) {
@@ -52,7 +46,7 @@ export async function GET(request: NextRequest) {
         });
       }
     } else if (queryParams.get("location")) {
-      // console.log(queryParams.get("location"));
+      console.log(queryParams.get("location"));
       let location = queryParams.get("location");
       if (location) {
         let payload = await resturantModel.find({

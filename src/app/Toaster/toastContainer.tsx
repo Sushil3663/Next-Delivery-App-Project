@@ -1,5 +1,6 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
+import ReduxContainer from "../_redux/ReduxContainer";
 
 const ToastContainer = ({
   children,
@@ -9,7 +10,7 @@ const ToastContainer = ({
   return (
     <div>
       <Toaster />
-      {children}
+      <ReduxContainer>{children}</ReduxContainer>
     </div>
   );
 };

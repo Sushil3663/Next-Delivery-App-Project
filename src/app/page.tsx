@@ -16,7 +16,7 @@ export default function Home() {
   const [list, setList] = useState<Array<ListResponsePayload>>();
   console.log(list);
 
-  const [city, setCity] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
   const [resturant, setResturant] = useState<string>("");
 
   // console.log(city);
@@ -46,10 +46,10 @@ export default function Home() {
   let responseListData = async () => {
     try {
       let url = "http://localhost:3000/api/customer";
-      if (city !== "" && resturant !== "") {
+      if (location !== "" && resturant !== "") {
         url = url;
-      } else if (city !== "") {
-        url += `?city=${city}`;
+      } else if (location !== "") {
+        url += `?location=${location}`;
       } else if (resturant !== "") {
         url += `?resturant=${resturant}`;
       }
@@ -74,11 +74,11 @@ export default function Home() {
 
   useEffect(() => {
     responseListData();
-  }, [city, resturant]);
+  }, [location, resturant]);
   // console.log(list);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCity(e.target.value);
+    setLocation(e.target.value);
     // responseListData();
   };
 
@@ -87,7 +87,7 @@ export default function Home() {
   };
 
   const handleClear = () => {
-    setCity("");
+    setLocation("");
     setResturant("");
   };
   return (
@@ -104,7 +104,7 @@ export default function Home() {
                 name="resturant"
                 id="resturant"
                 className="field-1"
-                value={city}
+                value={location}
                 onChange={handleChange}
               >
                 <option value="" disabled selected>

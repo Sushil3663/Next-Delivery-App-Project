@@ -63,21 +63,14 @@ const page = () => {
             </li>
           </ul>
         }
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
+        <div className="item-container">
           {foodItem.map((item) => (
             <ItemDetail
               foodname={item?.foodname}
               price={item?.price}
               path={item?.path}
               desc={item.desc}
+              item={item}
             />
           ))}
         </div>
