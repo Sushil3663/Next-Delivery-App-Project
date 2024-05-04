@@ -20,12 +20,12 @@ export const cartSlice = createSlice({
       if (check) {
         toast("Already Item in Cart");
       } else {
-        toast("Item Add successfully");
         const total = action.payload.price;
         state.cartItem = [
           ...state.cartItem,
           { ...action.payload, qtn: 1, total: total },
         ];
+        toast("Item Add successfully");
         localStorage.setItem(
           "cartData",
           JSON.stringify([
@@ -35,10 +35,47 @@ export const cartSlice = createSlice({
         );
       }
     },
+    deleteItem: (state, action) => {
+      console.log(action.payload);
+      let id = action.payload;
+      const index = state.cartItem.findIndex((el: FoodItem) => el._id === id);
+      state.cartItem.splice(index, 1);
+      localStorage.setItem("cartData", JSON.stringify(state.cartItem));
+    },
+    increaseQtn: (state, action) => {
+      const index = state.cartItem.findIndex(
+        (el: FoodItem) => el._id === action.payload
+      );
+      let qtn = state.cartItem[index].qtn;
+      let qtnInc = qtn++;
+      state.cartItem[index].qtn = qtnInc;
+
+      const price = state.cartItem[index].price; // current price
+      let totalPrice = qtnInc * price;
+      state.cartItem[index].total = totalPrice; // update price
+      localStorage.setItem("cartData", JSON.stringify(state.cartItem));
+    },
+    decreaseQty: (state, action) => {
+      const index = state.cartItem.findIndex(
+        (el: FoodItem) => el._id === action.payload
+      );
+      let qtn = state.cartItem[index].qtn;
+      if (qtn > 1) {
+        const qtyDec = --qtn;
+        state.cartItem[index].qtn = qtyDec;
+
+        const price = state.cartItem[index].price;
+        const total = price * qtyDec;
+
+        state.cartItem[index].total = total;
+        localStorage.setItem("cartData", JSON.stringify(state.cartItem));
+      }
+    },
   },
 });
 
-export const { addSlice } = cartSlice.actions;
+export const { addSlice, deleteItem, increaseQtn, decreaseQty } =
+  cartSlice.actions;
 
 export const selectUser = (state: RootState) => state.carts;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import "./detail.css";
 import { FoodItem } from "./common";
+import { useAppDispatch } from "../_redux/store";
+import { addSlice } from "../_redux/cartSlice";
 
 interface IProps {
   foodname: string;
@@ -10,8 +12,10 @@ interface IProps {
   item: FoodItem;
 }
 const ItemDetail = ({ foodname, price, path, desc, item }: IProps) => {
+  const dispatch = useAppDispatch();
   const handleCartData = (data: FoodItem) => {
     console.log(data);
+    dispatch(addSlice(data));
   };
   return (
     <div className="cards">

@@ -2,8 +2,13 @@ import Image from "next/image";
 import React from "react";
 import delivery from "../../../public/delivery.png";
 import Link from "next/link";
+import { RootState, useAppSelector } from "../_redux/store";
 
 const CustomerHeader = () => {
+  const cartDetail = useAppSelector(
+    (state: RootState) => state?.carts?.cartItem
+  );
+  console.log(cartDetail);
   return (
     <div className="header-wrapper">
       <div className="image">
