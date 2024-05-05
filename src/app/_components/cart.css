@@ -1,0 +1,121 @@
+.cart-container {
+  width: 100vw;
+  background: #ddd;
+  height: 100vh;
+}
+
+.cart {
+  padding: 1.8rem;
+  /* padding: 4vh 5vh; */
+  overflow-y: auto;
+}
+.cart-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid gainsboro;
+  width: 80vw;
+  margin: auto;
+  border-radius: 15px;
+  height: 42rem;
+  border: transparent;
+
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-flex {
+  background-color: white;
+  width: 55vw;
+  padding: 4vh 5vh;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.title-item-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+.cart-item-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+.col {
+  padding: 0 1vh;
+}
+a {
+  padding: 0 1vh;
+  text-decoration: none;
+  color: #000;
+}
+
+.col-2 img {
+  width: 3.5rem;
+  border-radius: 20%;
+}
+
+.back-to-shop {
+  margin-top: 4.5rem;
+}
+.total-flex {
+  width: 25vw;
+  padding: 4vh 5vh;
+  overflow-y: auto;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.summery {
+  padding-bottom: 1rem;
+}
+
+.item-detail {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem;
+}
+
+.price {
+  margin-top: 7rem;
+}
+
+.item-price {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 1rem;
+}
+.btn {
+  background-color: #000;
+  border-color: #000;
+  color: white;
+  width: 100%;
+  font-size: 0.7rem;
+  margin-top: 4vh;
+  padding: 1vh;
+  border-radius: 0;
+  cursor: pointer;
+}
+.btn:focus {
+  box-shadow: none;
+  outline: none;
+  box-shadow: none;
+  color: white;
+  -webkit-box-shadow: none;
+  transition: none;
+}
+.btn:hover {
+  color: white;
+}

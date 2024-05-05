@@ -176,3 +176,11 @@ table td button {
   height: 68vh;
   overflow-y: scroll;
 }
+
+.item-not-found {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -73,3 +73,17 @@ export interface DetailResponse {
   success: boolean;
   message: string;
 }
+
+export interface CartItem {
+  _id: string;
+  foodname: string;
+  price: number;
+  path: string;
+  desc: string;
+  resto_id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  qtn: number;
+  total: number;
+}

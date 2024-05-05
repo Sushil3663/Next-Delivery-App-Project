@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import delivery from "../../../public/delivery.png";
@@ -8,7 +9,8 @@ const CustomerHeader = () => {
   const cartDetail = useAppSelector(
     (state: RootState) => state?.carts?.cartItem
   );
-  console.log(cartDetail);
+  console.log(cartDetail.length);
+
   return (
     <div className="header-wrapper">
       <div className="image">
@@ -24,7 +26,7 @@ const CustomerHeader = () => {
           </li>
 
           <li>
-            <Link href={"#"}>Cart(0)</Link>
+            <Link href={"/cart"}>Cart({cartDetail?.length})</Link>
           </li>
 
           <li>

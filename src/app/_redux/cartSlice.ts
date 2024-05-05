@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
-import { FoodItem } from "../_components/common";
+import { CartItem, FoodItem } from "../_components/common";
 import toast from "react-hot-toast";
 
 // Define the initial state using that type
@@ -9,6 +9,12 @@ const initialCartData = localStorage.getItem("cartData");
 let initialState = {
   cartItem: initialCartData ? JSON.parse(initialCartData) : [],
 };
+
+// const initialCartData =
+//   typeof window !== "undefined" ? localStorage.getItem("cartData") : null;
+// let initialState = {
+//   cartItem: initialCartData ? JSON.parse(initialCartData) : [],
+// };
 export const cartSlice = createSlice({
   name: "carts",
   initialState,
@@ -26,25 +32,20 @@ export const cartSlice = createSlice({
           { ...action.payload, qtn: 1, total: total },
         ];
         toast("Item Add successfully");
-        localStorage.setItem(
-          "cartData",
-          JSON.stringify([
-            ...state.cartItem,
-            { ...action.payload, qtn: 1, total: total },
-          ])
-        );
+        localStorage.setItem("cartData", JSON.stringify(state.cartItem));
       }
     },
     deleteItem: (state, action) => {
       console.log(action.payload);
-      let id = action.payload;
-      const index = state.cartItem.findIndex((el: FoodItem) => el._id === id);
-      state.cartItem.splice(index, 1);
+      const idToRemove = action.payload;
+      state.cartItem = state.cartItem.filter(
+        (item: CartItem) => item._id !== idToRemove
+      );
       localStorage.setItem("cartData", JSON.stringify(state.cartItem));
     },
     increaseQtn: (state, action) => {
       const index = state.cartItem.findIndex(
-        (el: FoodItem) => el._id === action.payload
+        (el: CartItem) => el._id === action.payload
       );
       let qtn = state.cartItem[index].qtn;
       let qtnInc = qtn++;
@@ -57,7 +58,7 @@ export const cartSlice = createSlice({
     },
     decreaseQty: (state, action) => {
       const index = state.cartItem.findIndex(
-        (el: FoodItem) => el._id === action.payload
+        (el: CartItem) => el._id === action.payload
       );
       let qtn = state.cartItem[index].qtn;
       if (qtn > 1) {
