@@ -19,7 +19,7 @@ const ResturantPage = () => {
     }
   }, []);
   return (
-    <div>
+    <div className="container">
       <ResturantHeader />
       <h2 className="auth-header">Login/SignUp Page</h2>
       {login ? <ResturantLogin /> : <ResturantSignUp />}

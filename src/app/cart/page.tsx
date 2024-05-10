@@ -13,19 +13,8 @@ const Cart = () => {
   return (
     <>
       {cartDetail?.length > 0 ? (
-        cartDetail?.map((item: CartItem, index: number) => (
-          <ShoppingCart
-            key={index}
-            id={item._id}
-            path={item.path}
-            foodName={item.foodname}
-            desc={item.desc}
-            price={item.price}
-            qtn={item.qtn}
-            total={item.total}
-            length={cartDetail.length}
-          />
-        ))
+        // cartDetail?.map((item: CartItem, index: number) => (
+        <ShoppingCart length={cartDetail.length} />
       ) : (
         <div className="container">
           <div className="item-not-found">

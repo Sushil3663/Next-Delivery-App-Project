@@ -48,7 +48,10 @@ export const cartSlice = createSlice({
         (el: CartItem) => el._id === action.payload
       );
       let qtn = state.cartItem[index].qtn;
-      let qtnInc = qtn++;
+      console.log(qtn);
+      let qtnInc = qtn + 1;
+      console.log(qtnInc);
+
       state.cartItem[index].qtn = qtnInc;
 
       const price = state.cartItem[index].price; // current price
@@ -61,6 +64,7 @@ export const cartSlice = createSlice({
         (el: CartItem) => el._id === action.payload
       );
       let qtn = state.cartItem[index].qtn;
+
       if (qtn > 1) {
         const qtyDec = --qtn;
         state.cartItem[index].qtn = qtyDec;
@@ -70,6 +74,8 @@ export const cartSlice = createSlice({
 
         state.cartItem[index].total = total;
         localStorage.setItem("cartData", JSON.stringify(state.cartItem));
+      } else {
+        toast("No Item To Decrease");
       }
     },
   },

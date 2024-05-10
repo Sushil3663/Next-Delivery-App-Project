@@ -57,8 +57,8 @@ button[type="submit"] {
 .button-text {
   margin-top: 1.5rem;
   text-align: center;
-  background-color: white;
-  color: rgb(63, 63, 240);
+  /* background-color: white; */
+  color: rgb(1, 1, 16);
   cursor: pointer;
 }
 
