@@ -1,6 +1,7 @@
 "use client";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 interface MyApiResponse {
   payload: {
     email: string;
@@ -59,7 +60,7 @@ const ResturantSignUp = () => {
           "resturantUser",
           JSON.stringify(apiResponse?.payload)
         );
-        alert("sign up successful");
+        toast("sign up successful");
         router.push("/resturant/dashboard");
       }
     } else {

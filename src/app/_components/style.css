@@ -9,6 +9,12 @@
 .route-list {
   padding-right: 3rem;
 }
+.route-list button {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
 .image {
   padding-left: 3rem;
 }

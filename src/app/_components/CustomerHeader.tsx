@@ -4,13 +4,22 @@ import React from "react";
 import delivery from "../../../public/delivery.png";
 import Link from "next/link";
 import { RootState, useAppSelector } from "../_redux/store";
+import { useRouter } from "next/navigation";
 
 const CustomerHeader = () => {
+  const router = useRouter();
+  let userData = localStorage.getItem("user");
+  let data = JSON.parse(userData as string);
+  // console.log(data);
+
   const cartDetail = useAppSelector(
     (state: RootState) => state?.carts?.cartItem
   );
-  console.log(cartDetail.length);
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    router.push("/userAuth");
+  };
   return (
     <div className="header-wrapper">
       <div className="image">
@@ -21,9 +30,15 @@ const CustomerHeader = () => {
           <li>
             <Link href={"/"}>Home</Link>
           </li>
-          <li>
-            <Link href={"/resturant"}>Login/SignUp</Link>
-          </li>
+          {data && data?.name ? (
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          ) : (
+            <li>
+              <Link href={"/userAuth"}>Login/SignUp</Link>
+            </li>
+          )}
 
           <li>
             <Link href={"/cart"}>Cart({cartDetail?.length})</Link>

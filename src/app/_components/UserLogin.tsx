@@ -18,7 +18,7 @@ interface MyApiResponse {
   success: boolean;
   message: string;
 }
-const ResturantLogin = () => {
+const UserLogin = () => {
   const [data, setData] = useState({ email: "", password: "" });
 
   const router = useRouter();
@@ -48,12 +48,9 @@ const ResturantLogin = () => {
 
     if (apiResponse?.success) {
       delete apiResponse?.payload?.password;
-      localStorage.setItem(
-        "resturantUser",
-        JSON.stringify(apiResponse?.payload)
-      );
+      localStorage.setItem("user", JSON.stringify(apiResponse?.payload));
       toast("Login successful");
-      router.push("/resturant/dashboard");
+      router.push("/");
     }
   };
   return (
@@ -88,4 +85,4 @@ const ResturantLogin = () => {
   );
 };
 
-export default ResturantLogin;
+export default UserLogin;

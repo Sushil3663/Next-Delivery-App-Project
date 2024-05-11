@@ -1,11 +1,12 @@
 "use client";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 interface MyApiResponse {
   payload: {
+    name: string;
     email: string;
     password?: string;
-    rname: string;
     city: string;
     address: string;
     phone: string;
@@ -17,7 +18,7 @@ interface MyApiResponse {
   success: boolean;
   message: string;
 }
-const ResturantSignUp = () => {
+const UserSignUp = () => {
   let router = useRouter();
 
   const [data, setData] = useState({
@@ -44,23 +45,20 @@ const ResturantSignUp = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log(data);
-    const { email, password, cpassword, name, city, address, phone } = data;
+    const { name, email, password, cpassword, city, address, phone } = data;
     if (password === cpassword) {
       setError(false);
-      let response = await fetch("http://localhost:3000/api/resturant", {
+      let response = await fetch("http://localhost:3000/api/user", {
         method: "POST",
-        body: JSON.stringify({ email, password, name, city, address, phone }),
+        body: JSON.stringify({ name, email, password, city, address, phone }),
       });
       const apiResponse: MyApiResponse = await response.json();
       if (apiResponse?.success) {
         // console.log(apiResponse?.payload?.password);
         delete apiResponse?.payload?.password;
-        localStorage.setItem(
-          "resturantUser",
-          JSON.stringify(apiResponse?.payload)
-        );
-        alert("sign up successful");
-        router.push("/resturant/dashboard");
+        localStorage.setItem("user", JSON.stringify(apiResponse?.payload));
+        toast("sign Up successful");
+        router.push("/");
       }
     } else {
       setError(true);
@@ -153,4 +151,4 @@ const ResturantSignUp = () => {
   );
 };
 
-export default ResturantSignUp;
+export default UserSignUp;
