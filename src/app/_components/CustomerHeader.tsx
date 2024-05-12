@@ -10,7 +10,7 @@ const CustomerHeader = () => {
   const router = useRouter();
   let userData = localStorage.getItem("user");
   let data = JSON.parse(userData as string);
-  // console.log(data);
+  console.log(data);
 
   const cartDetail = useAppSelector(
     (state: RootState) => state?.carts?.cartItem

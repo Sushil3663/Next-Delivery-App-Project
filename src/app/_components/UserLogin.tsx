@@ -18,7 +18,10 @@ interface MyApiResponse {
   success: boolean;
   message: string;
 }
-const UserLogin = () => {
+interface IProps {
+  order?: string;
+}
+const UserLogin = ({ order }: IProps) => {
   const [data, setData] = useState({ email: "", password: "" });
 
   const router = useRouter();
@@ -36,7 +39,7 @@ const UserLogin = () => {
     e.preventDefault();
     let { email, password } = data;
 
-    let response = await fetch("http://localhost:3000/api/login", {
+    let response = await fetch("http://localhost:3000/api/userLogin", {
       method: "POST",
       headers: {
         contentType: "application/json",
@@ -47,10 +50,15 @@ const UserLogin = () => {
     let apiResponse: MyApiResponse = await response.json();
 
     if (apiResponse?.success) {
+      console.log(apiResponse);
       delete apiResponse?.payload?.password;
       localStorage.setItem("user", JSON.stringify(apiResponse?.payload));
       toast("Login successful");
-      router.push("/");
+      if (order) {
+        router.push("/order");
+      } else {
+        router.push("/");
+      }
     }
   };
   return (
@@ -77,7 +85,9 @@ const UserLogin = () => {
             />
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit" style={{ padding: "10px" }}>
+              Login
+            </button>
           </div>
         </form>
       </div>

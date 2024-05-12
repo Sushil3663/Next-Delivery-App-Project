@@ -22,7 +22,7 @@ const ShoppingCart = ({ length }: IProps) => {
 
   const totalPrice = cartDetail?.reduce(
     (acc: number, item: CartItem) => acc + item?.total,
-    0
+    100
   );
   const router = useRouter();
 
@@ -36,6 +36,18 @@ const ShoppingCart = ({ length }: IProps) => {
 
   const handleIncrease = (increaseId: string) => {
     dispatch(increaseQtn(increaseId));
+  };
+
+  let userData = localStorage.getItem("user");
+  let data = JSON.parse(userData as string);
+  console.log(data);
+
+  const handleOrder = () => {
+    if (data?.email) {
+      router.push("/order");
+    } else {
+      router.push("/userAuth?order=true");
+    }
   };
   return (
     <div className="cart-container">
@@ -102,7 +114,7 @@ const ShoppingCart = ({ length }: IProps) => {
                 <div className="">Rs. {totalPrice}</div>
               </div>
             </div>
-            <button className="btn">
+            <button className="btn" onClick={handleOrder}>
               <b>Order Now</b>
             </button>
           </div>

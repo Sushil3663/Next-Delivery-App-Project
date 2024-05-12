@@ -1,16 +1,16 @@
 import { connectionStrs } from "@/app/lib/db";
 import { usersModel } from "@/app/lib/usersModel";
 import mongoose from "mongoose";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 mongoose.connect(connectionStrs);
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const payload = await request.json();
 
     let { email, password } = payload;
-    console.log(email);
+    // console.log(email);
     if (email) {
       const payload = await usersModel.findOne({
         email: email,

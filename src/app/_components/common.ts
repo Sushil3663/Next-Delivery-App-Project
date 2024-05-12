@@ -87,3 +87,20 @@ export interface CartItem {
   qtn: number;
   total: number;
 }
+
+export interface orderResponse {
+  payload: {
+    _id: string;
+    user_id: string;
+    foodItemsIds: Array<string>;
+    resto_id: string;
+    deliveryBoy_id: string;
+    status: string;
+    amount: number;
+    __v: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+  success: boolean;
+  message: string;
+}

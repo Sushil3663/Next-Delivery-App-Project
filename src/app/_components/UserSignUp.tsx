@@ -18,7 +18,10 @@ interface MyApiResponse {
   success: boolean;
   message: string;
 }
-const UserSignUp = () => {
+interface IProps {
+  order?: string;
+}
+const UserSignUp = ({ order }: IProps) => {
   let router = useRouter();
 
   const [data, setData] = useState({
@@ -58,7 +61,11 @@ const UserSignUp = () => {
         delete apiResponse?.payload?.password;
         localStorage.setItem("user", JSON.stringify(apiResponse?.payload));
         toast("sign Up successful");
-        router.push("/");
+        if (order) {
+          router.push("/order");
+        } else {
+          router.push("/");
+        }
       }
     } else {
       setError(true);
