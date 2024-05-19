@@ -5,7 +5,7 @@ import { CartItem, FoodItem } from "../_components/common";
 import toast from "react-hot-toast";
 
 // Define the initial state using that type
-const initialCartData = localStorage.getItem("cartData");
+const initialCartData = localStorage?.getItem("cartData");
 let initialState = {
   cartItem: initialCartData ? JSON.parse(initialCartData) : [],
 };
@@ -78,11 +78,20 @@ export const cartSlice = createSlice({
         toast("No Item To Decrease");
       }
     },
+    removeCartItem: (state, action) => {
+      state.cartItem = action.payload;
+      localStorage.removeItem("cartData");
+    },
   },
 });
 
-export const { addSlice, deleteItem, increaseQtn, decreaseQty } =
-  cartSlice.actions;
+export const {
+  addSlice,
+  deleteItem,
+  increaseQtn,
+  decreaseQty,
+  removeCartItem,
+} = cartSlice.actions;
 
 export const selectUser = (state: RootState) => state.carts;
 

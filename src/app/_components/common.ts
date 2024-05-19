@@ -104,3 +104,31 @@ export interface orderResponse {
   success: boolean;
   message: string;
 }
+
+export interface orderPayload {
+  status: string;
+  amount: string;
+}
+
+export interface orderList {
+  payload: orderPayload[];
+  food: FoodItem[];
+  success: boolean;
+  message: string;
+}
+
+export interface deliveryResponse {
+  payload: {
+    name: string;
+    phone: string;
+    password?: string;
+    city: string;
+    address: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
+  success: boolean;
+  message: string;
+}

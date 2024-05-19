@@ -1,19 +1,22 @@
 "use client";
 import React from "react";
-import { RootState, useAppSelector } from "../_redux/store";
+import { RootState, useAppDispatch, useAppSelector } from "../_redux/store";
 import { CartItem, orderResponse } from "../_components/common";
 import CustomerHeader from "../_components/CustomerHeader";
 import Fotter from "../_components/Fotter";
 import toast from "react-hot-toast";
+import { removeCartItem } from "../_redux/cartSlice";
+import { useRouter } from "next/navigation";
 const page = () => {
+  const router = useRouter();
   let userData = localStorage.getItem("user");
   let data = JSON.parse(userData as string);
-  console.log(data);
+  // console.log(data);
   const cartDetail = useAppSelector(
     (state: RootState) => state?.carts?.cartItem
   );
   console.log(cartDetail);
-
+  const dispatch = useAppDispatch();
   const totalPrice = cartDetail?.reduce(
     (acc: number, item: CartItem) => acc + item?.total,
     100
@@ -22,6 +25,7 @@ const page = () => {
   const handleOrder = async () => {
     let user_id = data?._id;
     let resto_id = cartDetail[0]?.resto_id;
+    console.log(cartDetail);
     let foodItemsIds = cartDetail?.map((item: CartItem) => item._id);
     let deliveryBoy_id = "663fac3e77fe0ca5be6bd2ba";
     let status = "confirm";
@@ -45,6 +49,8 @@ const page = () => {
     let apiResponse: orderResponse = await response.json();
     if (apiResponse?.success) {
       toast?.success(apiResponse?.message);
+      dispatch(removeCartItem([]));
+      router.push(`/profile/${user_id}`);
     }
   };
   return (

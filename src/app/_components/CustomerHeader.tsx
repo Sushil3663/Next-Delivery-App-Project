@@ -20,6 +20,12 @@ const CustomerHeader = () => {
     localStorage.removeItem("user");
     router.push("/userAuth");
   };
+
+  const handleProfile = () => {
+    let user_id = data?._id;
+
+    router.push(`/profile/${user_id}`);
+  };
   return (
     <div className="header-wrapper">
       <div className="image">
@@ -27,25 +33,37 @@ const CustomerHeader = () => {
       </div>
       <div className="route-list">
         <ul>
-          <li>
-            <Link href={"/"}>Home</Link>
-          </li>
           {data && data?.name ? (
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleProfile} style={{ color: "blue" }}>
+                {data?.name}
+              </button>
+              <button onClick={handleLogout} style={{ color: "red" }}>
+                Logout
+              </button>
             </li>
           ) : (
             <li>
-              <Link href={"/userAuth"}>Login/SignUp</Link>
+              <Link href={"/userAuth"} style={{ color: "blue" }}>
+                Login/SignUp
+              </Link>
             </li>
           )}
-
           <li>
-            <Link href={"/cart"}>Cart({cartDetail?.length})</Link>
+            <Link href={"/"} style={{ color: "purple" }}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href={"/cart"} style={{ color: "purple" }}>
+              Cart({cartDetail?.length})
+            </Link>
           </li>
 
           <li>
-            <Link href={"#"}>Add Resturant</Link>
+            <Link href={"#"} style={{ color: "purple" }}>
+              Add Resturant
+            </Link>
           </li>
         </ul>
       </div>
