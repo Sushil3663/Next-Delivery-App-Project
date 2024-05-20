@@ -1,12 +1,19 @@
 "use client";
 import React from "react";
 import { RootState, useAppDispatch, useAppSelector } from "../_redux/store";
-import { CartItem, orderResponse } from "../_components/common";
+import {
+  CartItem,
+  deliveryResponse,
+  orderResponse,
+  partnerIds,
+  partnerResponse,
+} from "../_components/common";
 import CustomerHeader from "../_components/CustomerHeader";
 import Fotter from "../_components/Fotter";
 import toast from "react-hot-toast";
 import { removeCartItem } from "../_redux/cartSlice";
 import { useRouter } from "next/navigation";
+import { request } from "http";
 const page = () => {
   const router = useRouter();
   let userData = localStorage.getItem("user");
@@ -18,16 +25,39 @@ const page = () => {
   console.log(cartDetail);
   const dispatch = useAppDispatch();
   const totalPrice = cartDetail?.reduce(
-    (acc: number, item: CartItem) => acc + item?.total,
-    100
+    (acc: number, item: CartItem) => 100 + acc + item?.total,
+    0
   );
 
   const handleOrder = async () => {
     let user_id = data?._id;
+    let city = data?.city;
+    console.log(city);
     let resto_id = cartDetail[0]?.resto_id;
-    console.log(cartDetail);
+    // console.log(cartDetail);
     let foodItemsIds = cartDetail?.map((item: CartItem) => item._id);
-    let deliveryBoy_id = "663fac3e77fe0ca5be6bd2ba";
+
+    let deliveryBoy = await fetch(
+      `http://localhost:3000/api/deliveryPartnersSignUp/` + city,
+      {
+        method: "GET",
+        headers: {
+          contentType: "application/json",
+        },
+      }
+    );
+    let deliveryBoyResponse: partnerIds = await deliveryBoy.json();
+    // let deliveryBoy_id = "663fac3e77fe0ca5be6bd2ba";
+    console.log(deliveryBoyResponse);
+    let deliveryBoy_ids = deliveryBoyResponse?.payload?.map(
+      (item: partnerResponse) => item._id
+    );
+    let deliveryBoy_id =
+      deliveryBoy_ids[Math.floor(Math.random() * deliveryBoy_ids.length)];
+    console.log(deliveryBoy_id);
+    if (!deliveryBoy_id) {
+      toast.error("Delivery Boy not found");
+    }
     let status = "confirm";
     let amount = totalPrice;
     console.log(user_id, resto_id, foodItemsIds);

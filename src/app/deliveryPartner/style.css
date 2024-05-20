@@ -76,6 +76,7 @@
   transition: 0.4s ease-in-out;
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 .button1:hover {
@@ -93,10 +94,11 @@
   transition: 0.4s ease-in-out;
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 .button2:hover {
-  background-color: black;
+  background-color: red;
   color: white;
 }
 
@@ -109,6 +111,7 @@
   transition: 0.4s ease-in-out;
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 .button3:hover {

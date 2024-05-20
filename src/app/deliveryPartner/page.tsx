@@ -1,11 +1,21 @@
 "use client";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "./style.css";
-import CustomerHeader from "../_components/CustomerHeader";
 import Fotter from "../_components/Fotter";
 import toast from "react-hot-toast";
 import { deliveryResponse, MyApiResponse } from "../_components/common";
+import DeliveryHeader from "../_components/DeliveryHeader";
+import { useRouter } from "next/navigation";
 const DeliveryPartner = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    let data = localStorage.getItem("delivery");
+    let deliveryInfo = data && JSON.parse(data);
+    if (deliveryInfo) {
+      router.push("/deliveryDashBoard");
+    }
+  }, []);
   const [data, setData] = useState({
     name: "",
     phone: "",
@@ -53,6 +63,7 @@ const DeliveryPartner = () => {
           city: "",
           address: "",
         });
+        router.push("/deliveryDashBoard");
       }
     } else {
       setError(true);
@@ -95,11 +106,12 @@ const DeliveryPartner = () => {
         phone: "",
         password: "",
       });
+      router.push("/deliveryDashBoard");
     }
   };
   return (
     <>
-      <CustomerHeader />
+      <DeliveryHeader />
       <div className="container">
         <div className="main-form">
           <form className="form" onSubmit={handleSubmitLogin}>

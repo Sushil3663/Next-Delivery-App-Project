@@ -117,6 +117,24 @@ export interface orderList {
   message: string;
 }
 
+export interface partnerIds {
+  payload: partnerResponse[];
+  success: boolean;
+  message: string;
+}
+
+export interface partnerResponse {
+  name: string;
+  phone: string;
+  password?: string;
+  city: string;
+  address: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
 export interface deliveryResponse {
   payload: {
     name: string;

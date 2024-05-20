@@ -33,6 +33,27 @@ const CustomerHeader = () => {
       </div>
       <div className="route-list">
         <ul>
+          <li>
+            <Link href={"/"} style={{ color: "purple" }}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href={"/cart"} style={{ color: "purple" }}>
+              Cart({cartDetail?.length})
+            </Link>
+          </li>
+
+          <li>
+            <Link href={"/"} style={{ color: "purple" }}>
+              Add Resturant
+            </Link>
+          </li>
+          <li>
+            <Link href={"/deliveryPartner"} style={{ color: "purple" }}>
+              Delivery Partner
+            </Link>
+          </li>
           {data && data?.name ? (
             <li>
               <button onClick={handleProfile} style={{ color: "blue" }}>
@@ -49,22 +70,6 @@ const CustomerHeader = () => {
               </Link>
             </li>
           )}
-          <li>
-            <Link href={"/"} style={{ color: "purple" }}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href={"/cart"} style={{ color: "purple" }}>
-              Cart({cartDetail?.length})
-            </Link>
-          </li>
-
-          <li>
-            <Link href={"#"} style={{ color: "purple" }}>
-              Add Resturant
-            </Link>
-          </li>
         </ul>
       </div>
     </div>
